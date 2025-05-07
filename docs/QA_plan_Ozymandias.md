@@ -143,7 +143,7 @@ We apply the principles from Section 3 and the AI use cases in each area:
 * **Cache Performance:** Throughput and latency of the cache layer under concurrency.  
 * **Observability:** Success/failure rates, latency, and retry metrics.
 
-## 4.4 Asynchronous Queue {#4.4-asynchronous-queue}
+## 4.4 Asynchronous Queue
 
 * **Unit & Mutation Tests:** Producers/consumers, ack/nack, retries, and prioritized mutation coverage.  
 * **Integration:** Durability and ordering validated via snapshots; broker chaos tests.  
