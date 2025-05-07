@@ -6,63 +6,6 @@ This Quality Plan guarantees that the new version of **Ozymandias Perfect Holida
 
 It is based on a component-based approach (frontend, API, façade, messaging, DB) and on the principles of **Shift-Left**, **TDD/BDD**, and **Continuous Integration**.
 
-[1 · Purpose and Goals	2](#1-·-purpose-and-goals)
-
-[2 · Architecture and Quality Approach	2](#2-·-architecture-and-quality-approach)
-
-[3 · Principles of the Strategy	3](#3-·-principles-of-the-strategy)
-
-[3.1 Shift-Left Testing	4](#3.1-shift-left-testing)
-
-[AI use cases:	4](#ai-use-cases:)
-
-[3.2 Continuous Integration and Code Quality	4](#3.2-continuous-integration-and-code-quality)
-
-[AI use cases:	4](#ai-use-cases:-1)
-
-[3.3 Production Comparison (Golden-Master / Shadow-Traffic)	4](#3.3-production-comparison-\(golden-master-/-shadow-traffic\))
-
-[3.4 Component Testing and Functional Automation	4](#3.4-component-testing-and-functional-automation)
-
-[AI use cases:	4](#ai-use-cases:-2)
-
-[3.5 Smoke Testing	5](#3.5-smoke-testing)
-
-[AI use cases:	5](#ai-use-cases:-3)
-
-[3.6 Integration and Regression Testing	5](#3.6-integration-and-regression-testing)
-
-[AI use cases:	5](#ai-use-cases:-4)
-
-[4 · Testing Strategy by Component	6](#4-·-testing-strategy-by-component)
-
-[4.1 Front-end Web/Mobile	6](#4.1-front-end-web/mobile)
-
-[4.2 Holiday Service (REST API)	6](#4.2-holiday-service-\(rest-api\))
-
-[4.3 Weather Façade Service	6](#4.3-weather-façade-service)
-
-[4.4 Asynchronous Queue	6](#4.4-asynchronous-queue)
-
-[4.5 Holidays Database	7](#4.5-holidays-database)
-
-[5 · Quality by Sprint and Agile Phases	7](#5-·-quality-by-sprint-and-agile-phases)
-
-[5.1 Refinement and Preparation	7](#5.1-refinement-and-preparation)
-
-[5.2 Development and TDD	7](#5.2-development-and-tdd)
-
-[5.3 Pull Request and CI Gate	7](#5.3-pull-request-and-ci-gate)
-
-[5.4 Post-Merge and Continuous Regression	7](#5.4-post-merge-and-continuous-regression)
-
-[5.5 Retrospective and Continuous Improvement	7](#5.5-retrospective-and-continuous-improvement)
-
-[6 · Key Metrics	8](#6-·-key-metrics)
-
-[7 · Impacted Areas and Responsibilities	8](#7-·-impacted-areas-and-responsibilities)
-
-[8 · Assumptions and Strategy Adaptability	9](#8-·-assumptions-and-strategy-adaptability)
 
 # 1 · Purpose and Goals {#1-·-purpose-and-goals}
 
