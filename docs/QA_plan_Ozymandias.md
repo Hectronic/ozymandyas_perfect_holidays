@@ -7,7 +7,7 @@ This Quality Plan guarantees that the new version of **Ozymandias Perfect Holida
 It is based on a component-based approach (frontend, API, façade, messaging, DB) and on the principles of **Shift-Left**, **TDD/BDD**, and **Continuous Integration**.
 
 
-# 1 · Purpose and Goals {#1-·-purpose-and-goals}
+# 1 · Purpose and Goals
 
 This Quality Plan ensures that the new version of Ozymandias Perfect Holidays meets:
 
@@ -21,7 +21,7 @@ This Quality Plan ensures that the new version of Ozymandias Perfect Holidays me
 
 * **Performance:** supports approximately **1 000 req/s** with p95 latency \< 200 ms and an error rate \< 1 %.
 
-# 2 · Architecture and Quality Approach {#2-·-architecture-and-quality-approach}
+# 2 · Architecture and Quality Approach
 
 The system consists of five main layers:
 
@@ -39,7 +39,7 @@ For each layer, we will consistently apply the principles outlined in Section 3 
 
 Section 4 dives into the specific testing strategy for each component.
 
-# 3 · Principles of the Strategy {#3-·-principles-of-the-strategy}
+# 3 · Principles of the Strategy
 
 The quality strategy is built on proactive and continuous validation, deeply integrated with AI. It emphasizes:
 
@@ -57,77 +57,77 @@ The quality strategy is built on proactive and continuous validation, deeply int
 
 ## 
 
-## 3.1 Shift-Left Testing {#3.1-shift-left-testing}
+## 3.1 Shift-Left Testing 
 
 We define Given–When–Then criteria as part of the Definition of Ready, contrasting them against the existing application to reuse proven flows.
 
-### **AI use cases:** {#ai-use-cases:}
+### **AI use cases:** 
 
 * Automatic generation and refinement of acceptance criteria from the story description.  
 * RAG (Retrieval-Augmented Generation) against the repository to validate legacy flows, disambiguate requirements, and suggest reuse.
 
-## 3.2 Continuous Integration and Code Quality {#3.2-continuous-integration-and-code-quality}
+## 3.2 Continuous Integration and Code Quality 
 
 Every commit triggers a pipeline that runs linting, static analysis (SonarQube), and unit tests (≥ 85% coverage). Only when all checks pass is the build image created. The same pipeline also executes performance tests in staging to verify endpoint latencies and throughput.
 
-### **AI use cases:** {#ai-use-cases:-1}
+### **AI use cases:** 
 
 * Semantic identification of changed files to execute only the affected tests.  
 * Commit classification to trigger performance tests based on impact.
 
-## 3.3 Production Comparison (Golden-Master / Shadow-Traffic) {#3.3-production-comparison-(golden-master-/-shadow-traffic)}
+## 3.3 Production Comparison (Golden-Master / Shadow-Traffic)
 
 In staging, we execute the same test cases in parallel against both the current production version and the new version, generating semantic diffs of their JSON outputs. Additionally, we mirror a small percentage of real traffic to validate behavior live before proceeding with the full deployment.
 
-## 3.4 Component Testing and Functional Automation {#3.4-component-testing-and-functional-automation}
+## 3.4 Component Testing and Functional Automation
 
 * **Karate** validates HTTP contracts for the Holiday Service and Weather Façade using mocks and stubs.  
 * **E2E front-end** tests with Playwright/Selenium cover critical flows (login, search, filters) and include accessibility checks.  
 * Both suites run on every merge to **main** and nightly against staging-cloned environments.
 
-### **AI use cases:** {#ai-use-cases:-2}
+### **AI use cases:** 
 
 * Automatic script generation (OpenAPI → Karate / Gherkin → Playwright/Selenium).  
 * Auto-curation of UI selectors when attributes change.  
 * Prioritization of cases based on coverage and risk.
 
-## 3.5 Smoke Testing {#3.5-smoke-testing}
+## 3.5 Smoke Testing 
 
 Lightweight tests on each build that validate vital endpoints/pages:
 
 * **Backend:** `/health`, `/login`, `/recommendations`  
 * **Front-end:** page load checks (login, dashboard), form rendering, basic navigation (logout, pagination)
 
-### **AI use cases:** {#ai-use-cases:-3}
+### **AI use cases:** 
 
 * Automatic generation of new smoke checks based on historical failure patterns.  
 * Creation of smoke UI scripts from application snapshots.  
 * Intelligent monitoring of failure trends to suggest extensions.
 
-## 3.6 Integration and Regression Testing {#3.6-integration-and-regression-testing}
+## 3.6 Integration and Regression Testing 
 
 * **Integration:** full interaction Holiday Service ↔ Database ↔ Queue ↔ Weather Façade on every merge to **main**.  
 * **Regression:** nightly execution of the complete suite (unit, integration, E2E, mutation).
 
-### **AI use cases:** {#ai-use-cases:-4}
+### **AI use cases:** 
 
 * Semantic selection of the most relevant regression tests after each change.  
 * Intelligent clustering of failures to pinpoint critical areas and recommend improvements.
 
 # 
 
-# 4 · Testing Strategy by Component {#4-·-testing-strategy-by-component}
+# 4 · Testing Strategy by Component 
 
 We apply the principles from Section 3 and the AI use cases in each area:
 
-## 4.1 Front-end Web/Mobile {#4.1-front-end-web/mobile}
+## 4.1 Front-end Web/Mobile
 
 * **Shift-Left & BDD:** Given–When–Then criteria versioned alongside the design.  
 * **Smoke UI:** Playwright validates page load, rendering, and navigation on every build.  
 * **E2E & Automation:** Critical flows (login → recommendations → filters) run on merge and nightly.  
 * **Visual Comparison:** Screenshots in staging vs. baseline to detect layout regressions.
 
-## 4.2 Holiday Service (REST API) {#4.2-holiday-service-(rest-api)}
+## 4.2 Holiday Service (REST API)
 
 * **TDD & Unit Tests:** ≥ 85 % coverage on `/login`, `/recommendations`, and `/health`.  
 * **Smoke API:** Health checks on status, response times, and JSON schema.  
@@ -136,7 +136,7 @@ We apply the principles from Section 3 and the AI use cases in each area:
 * **Performance:** k6/Locust simulate 1 000 req/s, measuring p95 and error rate.  
 * **Observability:** Distributed tracing and metrics for latency, QPS, and errors.
 
-## 4.3 Weather Façade Service {#4.3-weather-façade-service}
+## 4.3 Weather Façade Service
 
 * **Contract Tests:** JSON schemas for OpenWeatherMap responses via VCR.py.  
 * **Resilience & Chaos:** Timeouts, 5xx errors, and extreme latencies; IA-generated scenarios.  
@@ -152,7 +152,7 @@ We apply the principles from Section 3 and the AI use cases in each area:
 
 ## 
 
-## 4.5 Holidays Database {#4.5-holidays-database}
+## 4.5 Holidays Database
 
 * **Seed & Edge Data:** deterministic script populates special-case records.  
 * **Queries & Concurrency:** tests for concurrent reads and writes.  
@@ -162,33 +162,33 @@ We apply the principles from Section 3 and the AI use cases in each area:
 
 # 
 
-# 5 · Quality by Sprint and Agile Phases {#5-·-quality-by-sprint-and-agile-phases}
+# 5 · Quality by Sprint and Agile Phases
 
  Continuous integration of QA throughout each sprint phase:
 
-## 5.1 Refinement and Preparation {#5.1-refinement-and-preparation}
+## 5.1 Refinement and Preparation
 
 Definition of Given–When–Then criteria in the backlog, validated against the existing application and refined by an LLM.
 
-## 5.2 Development and TDD {#5.2-development-and-tdd}
+## 5.2 Development and TDD 
 
 Unit tests written before code and BDD scenarios for critical flows; AI suggests test skeletons.
 
-## 5.3 Pull Request and CI Gate {#5.3-pull-request-and-ci-gate}
+## 5.3 Pull Request and CI Gate
 
 Pipeline executes linting, static analysis, unit tests, smoke tests, and ephemeral integration tests; merges only when everything is green.
 
-## 5.4 Post-Merge and Continuous Regression {#5.4-post-merge-and-continuous-regression}
+## 5.4 Post-Merge and Continuous Regression
 
 Customized regression suite runs after merging into **develop**, including E2E integration and semantic test selection; nightly full-suite execution and shadow-traffic on **main**.
 
-## 5.5 Retrospective and Continuous Improvement {#5.5-retrospective-and-continuous-improvement}
+## 5.5 Retrospective and Continuous Improvement
 
 Review of metrics and defects during the retrospective, acceptance criteria are adjusted and test-suite improvements are prioritized.
 
 # 
 
-# 6 · Key Metrics {#6-·-key-metrics}
+# 6 · Key Metrics
 
 * **Code coverage:** ≥ 85 % (lines/branches)  
 * **p95 latency for `/recommendations`:** \< 200 ms at 1 000 req/s  
@@ -196,7 +196,7 @@ Review of metrics and defects during the retrospective, acceptance criteria are 
 * **Asynchronous queue p95 depth:** \< 1 s  
 * **BDD scenario success rate on main:** \> 95 %
 
-# 7 · Impacted Areas and Responsibilities {#7-·-impacted-areas-and-responsibilities}
+# 7 · Impacted Areas and Responsibilities
 
 * **Business Analysts / Product Owners**  
   * Define and maintain Given–When–Then criteria.  
@@ -225,7 +225,7 @@ Review of metrics and defects during the retrospective, acceptance criteria are 
   * Anonymize data and ensure GDPR compliance.  
   * Monitor query latencies and concurrency on critical workloads.
 
-# 8 · Assumptions and Strategy Adaptability {#8-·-assumptions-and-strategy-adaptability}
+# 8 · Assumptions and Strategy Adaptability
 
 Our quality strategy relies on these core assumptions:
 
