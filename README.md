@@ -20,7 +20,7 @@ cd karate
 
 # Run Python tests
 cd python
-pytest
+./run.sh
 ```
 
 ## Documentation
